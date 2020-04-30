@@ -6,6 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import {Provider as AuthProvider} from './src/context/AuthContext';
 
 const Stack = createStackNavigator();
 
@@ -21,4 +22,10 @@ function App() {
   );
 }
 
-export default App;
+export default () => {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+};
