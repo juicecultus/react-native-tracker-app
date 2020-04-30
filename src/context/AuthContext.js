@@ -1,5 +1,5 @@
 import createDataContext from './createDataContext';
-import {Input} from 'react-native-elements';
+import trackerApi from '../api/tracker';
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -9,10 +9,13 @@ const authReducer = (state, action) => {
 };
 
 const signup = dispatch => {
-  return ({email, password}) => {
-    // make api request to sign up with email and password
-    // if signed up, modify state to say we are authenticated
-    // if fail, convey error message to user
+  return async ({email, password}) => {
+    try {
+      const response = await trackerApi.post('/signup', {email, password});
+      console.log(response.data);
+    } catch (err) {
+      console.log(err.response.data);
+    }
   };
 };
 
