@@ -1,11 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, Button} from 'react-native';
 
-const SigninScreen = () => {
+const SigninScreen = ({navigation}) => {
   return (
-    <View>
+    <>
       <Text style={styles.text}>Signin Screen</Text>
-    </View>
+      <Button
+        title="Go to Signup"
+        onPress={() => navigation.navigate('SignUp')}
+      />
+    </>
   );
 };
 
@@ -14,5 +18,6 @@ export default SigninScreen;
 const styles = StyleSheet.create({
   text: {
     fontSize: 48,
+    textAlign: 'center',
   },
 });
