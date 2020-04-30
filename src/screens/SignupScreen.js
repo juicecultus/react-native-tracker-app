@@ -9,10 +9,7 @@ const SignupScreen = ({navigation}) => {
         title="Go to Signin"
         onPress={() => navigation.navigate('SignIn')}
       />
-      <Button
-        title="Go to Home"
-        onPress={() => navigation.navigate('Home', {screen: 'Account'})}
-      />
+      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
     </>
   );
 };

@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 
 const TrackScreen = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator headerMode="none">
       <Stack.Screen name="TrackList" component={TrackListScreen} />
       <Stack.Screen name="TrackDetail" component={TrackDetailScreen} />
     </Stack.Navigator>

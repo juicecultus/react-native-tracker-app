@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 
 const AccountScreen = () => {
   return (
-    <View>
+    <>
       <Text style={styles.text}>Account Screen</Text>
-    </View>
+    </>
   );
 };
 
