@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Text} from 'react-native';
 
 import AccountScreen from './AccountScreen';
 import TrackCreateScreen from './TrackCreateScreen';
