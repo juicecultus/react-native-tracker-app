@@ -17,8 +17,24 @@ export default function App({navigation}) {
     <AuthProvider value={AuthContext}>
       <NavigationContainer ref={navigationRef}>
         <Stack.Navigator headerMode="none">
-          <Stack.Screen name="SignIn" component={SigninScreen} />
-          <Stack.Screen name="SignUp" component={SignupScreen} />
+          <Stack.Screen
+            name="SignIn"
+            component={SigninScreen}
+            listeners={{
+              blur: e => {
+                e.clearErrorMessage;
+              },
+            }}
+          />
+          <Stack.Screen
+            name="SignUp"
+            component={SignupScreen}
+            listeners={{
+              blur: e => {
+                e.clearErrorMessage;
+              },
+            }}
+          />
           <Stack.Screen name="Home" component={HomeScreen} />
         </Stack.Navigator>
       </NavigationContainer>

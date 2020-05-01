@@ -5,7 +5,9 @@ import AuthForm from '../components/AuthForm';
 import NavLink from '../context/NavLink';
 
 const SigninScreen = ({navigation}) => {
-  const {state, signin} = useContext(AuthContext);
+  const {state, signin, clearErrorMessage} = useContext(AuthContext);
+
+  const listener = navigation.addListener('blur', clearErrorMessage);
 
   return (
     <View style={styles.container}>

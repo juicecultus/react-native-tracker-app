@@ -5,7 +5,9 @@ import AuthForm from '../components/AuthForm';
 import NavLink from '../context/NavLink';
 
 const SignupScreen = ({navigation}) => {
-  const {state, signup} = useContext(AuthContext);
+  const {state, signup, clearErrorMessage} = useContext(AuthContext);
+
+  const listener = navigation.addListener('blur', clearErrorMessage);
 
   return (
     <View style={styles.container}>
