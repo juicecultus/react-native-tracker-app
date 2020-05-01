@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {StyleSheet} from 'react-native';
 import {Context as AuthContext} from '../context/AuthContext';
 import AuthForm from '../components/AuthForm';
 import NavLink from '../context/NavLink';
@@ -10,7 +11,7 @@ const SignupScreen = ({navigation}) => {
   const listener = navigation.addListener('blur', clearErrorMessage);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <AuthForm
         headerText="Sign up for Tracker"
         errorMessage={state.errorMessage}
@@ -21,7 +22,7 @@ const SignupScreen = ({navigation}) => {
         routeName="SignIn"
         linkText="Already have an account? Sign in instead"
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
