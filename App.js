@@ -7,6 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 import {Provider as AuthProvider} from './src/context/AuthContext';
 import {Context as AuthContext} from './src/context/AuthContext';
 
@@ -17,6 +18,7 @@ export default function App({navigation}) {
     <AuthProvider value={AuthContext}>
       <NavigationContainer ref={navigationRef}>
         <Stack.Navigator headerMode="none">
+          <Stack.Screen name="Resolve" component={ResolveAuthScreen} />
           <Stack.Screen
             name="SignIn"
             component={SigninScreen}
