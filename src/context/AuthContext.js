@@ -36,15 +36,19 @@ const signup = dispatch => async ({email, password}) => {
   }
 };
 
-// const bootstrapAsync = dispatch => async () => {
-//   let userToken;
-//   try {
-//     userToken = await AsyncStorage.getItem('userToken');
-//     dispatch({type: 'restore_token', payload: userToken});
-//   } catch (err) {
-//     console.log(err.message);
-//   }
-// };
+const tryLocalSignin = dispatch => async () => {
+  try {
+    const token = await AsyncStorage.getItem('token');
+    if (token) {
+      dispatch({type: 'signin', payload: token});
+      RootNavigation.navigate('Home');
+    } else {
+      RootNavigation.navigate('SignUp');
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+};
 
 const signin = dispatch => async ({email, password}) => {
   try {
@@ -66,7 +70,7 @@ const signout = dispatch => {
 
 export const {Provider, Context} = createDataContext(
   authReducer,
-  {signup, signin, signout, clearErrorMessage},
+  {signup, signin, signout, clearErrorMessage, tryLocalSignin},
   {
     token: null,
     errorMessage: '',
