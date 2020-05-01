@@ -11,9 +11,9 @@ const Tab = createBottomTabNavigator();
 const HomeScreen = () => {
   return (
     <Tab.Navigator headerMode="none">
+      <Tab.Screen name="Track" component={TrackScreen} />
       <Tab.Screen name="TrackCreate" component={TrackCreateScreen} />
       <Tab.Screen name="Account" component={AccountScreen} />
-      <Tab.Screen name="Track" component={TrackScreen} />
     </Tab.Navigator>
   );
 };
