@@ -8,7 +8,7 @@ const authReducer = (state, action) => {
     case 'signin':
       return {errorMessage: '', token: action.payload};
     case 'signout':
-      return {...state, token: null};
+      return {token: null, errorMessage: ''};
     case 'add_error':
       return {...state, errorMessage: action.payload};
     case 'clear_error_message':
@@ -37,16 +37,12 @@ const signup = dispatch => async ({email, password}) => {
 };
 
 const tryLocalSignin = dispatch => async () => {
-  try {
-    const token = await AsyncStorage.getItem('token');
-    if (token) {
-      dispatch({type: 'signin', payload: token});
-      RootNavigation.navigate('Home');
-    } else {
-      RootNavigation.navigate('SignUp');
-    }
-  } catch (err) {
-    console.log(err.message);
+  const token = await AsyncStorage.getItem('token');
+  if (token) {
+    dispatch({type: 'signin', payload: token});
+    RootNavigation.navigate('Home');
+  } else {
+    RootNavigation.navigate('SignUp');
   }
 };
 
@@ -56,7 +52,7 @@ const signin = dispatch => async ({email, password}) => {
     await AsyncStorage.setItem('token', response.data.token);
     dispatch({type: 'signin', payload: response.data.token});
     RootNavigation.navigate('Home');
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: 'add_error',
       payload: 'Something went wrong with sign in',
@@ -64,8 +60,10 @@ const signin = dispatch => async ({email, password}) => {
   }
 };
 
-const signout = dispatch => {
-  // return () => dispatch({type: 'sign_out'});
+const signout = dispatch => async () => {
+  await AsyncStorage.removeItem('token');
+  dispatch({type: 'signout'});
+  RootNavigation.navigate('SignIn');
 };
 
 export const {Provider, Context} = createDataContext(
