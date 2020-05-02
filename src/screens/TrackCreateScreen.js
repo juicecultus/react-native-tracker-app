@@ -1,3 +1,4 @@
+import '../_mockLocation';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {StyleSheet} from 'react-native';
@@ -29,7 +30,7 @@ const TrackCreateScreen = () => {
       </Text>
       <Spacer />
       <Map />
-      {err ? <Text>Please enable location services</Text> : null}
+      {err ? <Text h5>Please enable location services</Text> : null}
     </SafeAreaView>
   );
 };
