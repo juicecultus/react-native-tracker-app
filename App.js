@@ -9,40 +9,48 @@ import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
-import {Provider as AuthProvider} from './src/context/AuthContext';
-import {Context as AuthContext} from './src/context/AuthContext';
+import {
+  Provider as AuthProvider,
+  Context as AuthContext,
+} from './src/context/AuthContext';
+import {
+  Provider as LocationProvider,
+  Context as LocationContext,
+} from './src/context/LocationContext';
 
 const Stack = createStackNavigator();
 
 export default function App({navigation}) {
   return (
-    <AuthProvider value={AuthContext}>
-      <SafeAreaProvider>
-        <NavigationContainer ref={navigationRef}>
-          <Stack.Navigator headerMode="none">
-            <Stack.Screen name="Resolve" component={ResolveAuthScreen} />
-            <Stack.Screen
-              name="SignIn"
-              component={SigninScreen}
-              listeners={{
-                blur: e => {
-                  e.clearErrorMessage;
-                },
-              }}
-            />
-            <Stack.Screen
-              name="SignUp"
-              component={SignupScreen}
-              listeners={{
-                blur: e => {
-                  e.clearErrorMessage;
-                },
-              }}
-            />
-            <Stack.Screen name="Home" component={HomeScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </AuthProvider>
+    <LocationProvider value={LocationContext}>
+      <AuthProvider value={AuthContext}>
+        <SafeAreaProvider>
+          <NavigationContainer ref={navigationRef}>
+            <Stack.Navigator headerMode="none">
+              <Stack.Screen name="Resolve" component={ResolveAuthScreen} />
+              <Stack.Screen
+                name="SignIn"
+                component={SigninScreen}
+                listeners={{
+                  blur: e => {
+                    e.clearErrorMessage;
+                  },
+                }}
+              />
+              <Stack.Screen
+                name="SignUp"
+                component={SignupScreen}
+                listeners={{
+                  blur: e => {
+                    e.clearErrorMessage;
+                  },
+                }}
+              />
+              <Stack.Screen name="Home" component={HomeScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </AuthProvider>
+    </LocationProvider>
   );
 }
